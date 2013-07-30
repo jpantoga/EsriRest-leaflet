@@ -40,8 +40,10 @@ L.TileLayer.EsriRest = L.TileLayer.extend({
 	onAdd: function (map) {
 
 		this.esriParams['bboxSR'] = map.options.crs.code.substring(5);
-        this.esriParams['imageSR'] = map.options.crs.code.substring(5);
-        this.esriParams['layers'] = "show:" + this.esriParams['layers'];
+                this.esriParams['imageSR'] = map.options.crs.code.substring(5);
+                if (this.esriParams['layers'].search("show:") != -1){
+                   this.esriParams['layers'] = "show:" + this.esriParams['layers'];
+}
 
 		L.TileLayer.prototype.onAdd.call(this, map);
 	},
